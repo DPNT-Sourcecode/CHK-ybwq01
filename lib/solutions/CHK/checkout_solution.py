@@ -35,6 +35,11 @@ def checkout(skus):
     for sku in skus_order:
         if sku not in PRICES:
             return -1
+        if sku in GET_FREE.keys():
+            offers = sorted(GET_FREE[sku].keys(), reverse=True)
+            for offer in offers:
+                while sku_counter[sku] >= offer + GET_FREE[sku][offer]:
+                    sku_counter[sku] -= GET_FREE[sku][offer]
         count_sku = sku_counter[sku]
         if sku in OFFERS:
             offers = sorted(OFFERS[sku].keys(), reverse=True)
@@ -55,21 +60,26 @@ def checkout(skus):
                                 remaining -= offer
     return total
 
-# if __name__ == '__main__':
-#     order1 = 'AAAAA'
-#     assert checkout(order1) == 200
-#     order2 = 'AAAAAAAA'
-#     assert checkout(order2) == 330
-#     order3 = 'AAAAAAAAA'
-#     assert checkout(order3) == 380
-#     order4 = 'AAAA'
-#     assert checkout(order4) == 180
-#     order5 = 'EEB'
-#     assert checkout(order5) == 80
-#     order6 = 'EEEEBB'
-#     assert checkout(order6) == 160
-#     order7 = 'BEBEEE'
-#     assert checkout(order7) == 160
+if __name__ == '__main__':
+    order1 = 'AAAAA'
+    assert checkout(order1) == 200
+    order2 = 'AAAAAAAA'
+    assert checkout(order2) == 330
+    order3 = 'AAAAAAAAA'
+    assert checkout(order3) == 380
+    order4 = 'AAAA'
+    assert checkout(order4) == 180
+    order5 = 'EEB'
+    assert checkout(order5) == 80
+    order6 = 'EEEEBB'
+    assert checkout(order6) == 160
+    order7 = 'BEBEEE'
+    assert checkout(order7) == 160
+    order7 = 'BEBEEEFFF'
+    assert checkout(order7) == 180
+    order8 = 'FFFFFF'
+    assert checkout(order8) == 40
+
 
 
 
