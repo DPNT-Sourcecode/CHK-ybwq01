@@ -60,8 +60,5 @@ if __name__ == '__main__':
     order6 = 'EEEEBB'
     assert checkout(order6) == 160
 
-
-
-
-
+    # Waiting for server responses...
 
