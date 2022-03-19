@@ -85,7 +85,3 @@ def checkout(skus):
 #     assert checkout(order9) == 20
 
 
-
-
-
-
