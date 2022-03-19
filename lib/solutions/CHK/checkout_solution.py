@@ -4,11 +4,12 @@ PRICES = {
     'A': 50,
     'B': 30,
     'C': 20,
-    'D': 15
+    'D': 15,
+    'E': 40
 }
 
 OFFERS = {
-    'A': {3: 130},
+    'A': {3: 130, 5: 200},
     'B': {2: 45}
 }
 
@@ -31,6 +32,12 @@ def checkout(skus):
 
     return total
 
-
-
-
+if __name__ == '__main__':
+    order1 = 'AAAAA'
+    assert checkout(order1) == 200
+    order2 = 'AAAAAAAA'
+    assert checkout(order2) == 330
+    order3 = 'AAAAAAAAA'
+    assert checkout(order3) == 380
+    order4 = 'AAAA'
+    assert checkout(order4) == 180
