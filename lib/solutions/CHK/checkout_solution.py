@@ -13,6 +13,10 @@ OFFERS = {
     'B': {2: 45}
 }
 
+CROSS_OFFERS = {
+    'E': {2: {'B': 1}}
+}
+
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
@@ -28,6 +32,10 @@ def checkout(skus):
                 while count_sku >= offer:
                     total += OFFERS[sku][offer]
                     count_sku -= offer
+        if sku in CROSS_OFFERS:
+            if sku_counter[sku]>=CROSS_OFFERS[sku]:
+                
+
         total += count_sku * PRICES[sku]
 
     return total
@@ -41,3 +49,5 @@ if __name__ == '__main__':
     assert checkout(order3) == 380
     order4 = 'AAAA'
     assert checkout(order4) == 180
+    order5 = 'EEB'
+    assert checkout(order5) == 80
