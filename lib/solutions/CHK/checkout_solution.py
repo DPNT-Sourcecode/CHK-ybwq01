@@ -40,7 +40,6 @@ def checkout(skus):
                     related_items = CROSS_OFFERS[sku][offer].keys()
                     for item in related_items:
                         if item in sku_counter:
-                            total -= CROSS_OFFERS[sku][offer][item] * PRICES[item]
                             sku_counter[item] -= CROSS_OFFERS[sku][offer][item]
 
         total += count_sku * PRICES[sku]
@@ -60,6 +59,7 @@ if __name__ == '__main__':
     # assert checkout(order5) == 80
     order6 = 'EEBB'
     assert checkout(order6) == 110
+
 
 
 
