@@ -5,7 +5,8 @@ PRICES = {
     'B': 30,
     'C': 20,
     'D': 15,
-    'E': 40
+    'E': 40,
+    'F': 10
 }
 
 OFFERS = {
@@ -15,6 +16,10 @@ OFFERS = {
 
 CROSS_OFFERS = {
     'E': {2: {'B': 1}}
+}
+
+GET_FREE = {
+    'F': {2: 1}
 }
 
 # noinspection PyUnusedLocal
@@ -65,5 +70,6 @@ def checkout(skus):
 #     assert checkout(order6) == 160
 #     order7 = 'BEBEEE'
 #     assert checkout(order7) == 160
+
 
 
