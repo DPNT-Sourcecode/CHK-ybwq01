@@ -11,7 +11,7 @@ PRICES = {
     'H': 10,
     'I': 35,
     'J': 60,
-    'K': 80,
+    'K': 70,
     'L': 90,
     'M': 15,
     'N': 40,
@@ -135,12 +135,5 @@ def checkout(skus):
 #     assert checkout(order9) == 20
 #     complicated_order = 'AAABBBBBCCCCDDDEEFFFGGHHHHHIIJJJNNNMUUU'
 #     assert checkout(complicated_order) == 1020
-
-
-
-
-
-
-
 
 
