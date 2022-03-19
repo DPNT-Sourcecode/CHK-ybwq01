@@ -46,19 +46,20 @@ def checkout(skus):
                                 remaining -= offer
     return total
 
-if __name__ == '__main__':
-    order1 = 'AAAAA'
-    assert checkout(order1) == 200
-    order2 = 'AAAAAAAA'
-    assert checkout(order2) == 330
-    order3 = 'AAAAAAAAA'
-    assert checkout(order3) == 380
-    order4 = 'AAAA'
-    assert checkout(order4) == 180
-    order5 = 'EEB'
-    assert checkout(order5) == 80
-    order6 = 'EEEEBB'
-    assert checkout(order6) == 160
+# if __name__ == '__main__':
+#     order1 = 'AAAAA'
+#     assert checkout(order1) == 200
+#     order2 = 'AAAAAAAA'
+#     assert checkout(order2) == 330
+#     order3 = 'AAAAAAAAA'
+#     assert checkout(order3) == 380
+#     order4 = 'AAAA'
+#     assert checkout(order4) == 180
+#     order5 = 'EEB'
+#     assert checkout(order5) == 80
+#     order6 = 'EEEEBB'
+#     assert checkout(order6) == 160
+
 
 
 
