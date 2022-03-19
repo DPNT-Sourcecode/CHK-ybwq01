@@ -19,14 +19,14 @@ PRICES = {
     'P': 50,
     'Q': 30,
     'R': 50,
-    'S': 30,
+    'S': 20,
     'T': 20,
     'U': 40,
     'V': 50,
     'W': 20,
-    'X': 90,
-    'Y': 10,
-    'Z': 50
+    'X': 17,
+    'Y': 20,
+    'Z': 21
 }
 
 OFFERS = {
@@ -70,7 +70,11 @@ def checkout(skus):
         for bundle in BUNDLE_OFFERS.keys():
             if sku in bundle:
                 sub_counter = {sku: sku_counter[sku] for sku in sku_counter.keys() if sku in bundle}
-                print(sub_counter)
+                if len(sub_counter) < BUNDLE_OFFERS[bundle][0]:
+                    continue
+                else:
+                    individual_prices = {sku: PRICES[sku] for sku in sub_counter.keys()}
+                    print(individual_prices)
 
         if sku in GET_FREE.keys():
             offers = sorted(GET_FREE[sku].keys(), reverse=True)
@@ -124,6 +128,7 @@ if __name__ == '__main__':
     # assert checkout(complicated_order) == 1020
     bundle_order1 = 'STXYZ'
     assert checkout(bundle_order1) == 82
+
 
 
 
