@@ -79,11 +79,12 @@ def checkout(skus):
                     bundled_skus = []
                     for price in most_expensive:
                         for sub_sku in sub_counter.keys():
-                            if PRICES[sub_sku] == price:
+                            if PRICES[sub_sku] == price and sub_sku not in bundled_skus:
                                 bundled_skus.append(sub_sku)
                                 break
-
-                    print(bundled_skus)
+                    total += BUNDLE_OFFERS[bundle][1]
+                    for sub_sku in bundled_skus:
+                        sku_counter[sub_sku] -= 1
 
         if sku in GET_FREE.keys():
             offers = sorted(GET_FREE[sku].keys(), reverse=True)
@@ -136,7 +137,9 @@ if __name__ == '__main__':
     # complicated_order = 'AAABBBBBCCCCDDDEEFFFGGHHHHHIIJJJNNNMUUU'
     # assert checkout(complicated_order) == 1020
     bundle_order1 = 'STXYZ'
+    print(checkout(bundle_order1))
     assert checkout(bundle_order1) == 82
+
 
 
 
