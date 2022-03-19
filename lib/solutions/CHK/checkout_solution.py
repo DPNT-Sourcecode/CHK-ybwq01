@@ -31,10 +31,6 @@ def checkout(skus):
 
     return total
 
-if __name__ == '__main__':
-    order1 = 'AAAAAAA'
-    print(checkout(order1))
-    assert checkout(order1) == 100
 
 
 
