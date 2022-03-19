@@ -33,7 +33,7 @@ OFFERS = {
     'A': {3: 130, 5: 200},
     'B': {2: 45},
     'H': {5: 45, 10: 80},
-    'K': {2: 150},
+    'K': {2: 120},
     'P': {5: 200},
     'Q': {3: 80},
     'V': {2: 90, 3: 130}
@@ -48,6 +48,11 @@ CROSS_OFFERS = {
 GET_FREE = {
     'F': {2: 1},
     'U': {3: 1}
+}
+
+BUNDLES = {'bundle1': ('S', 'T', 'X', 'Y', 'Z')}
+BUNDLE_OFFERS = {
+    'S': (3, 45)
 }
 
 # noinspection PyUnusedLocal
@@ -90,28 +95,31 @@ def checkout(skus):
                                 remaining -= offer
     return total
 
-# if __name__ == '__main__':
-#     order1 = 'AAAAA'
-#     assert checkout(order1) == 200
-#     order2 = 'AAAAAAAA'
-#     assert checkout(order2) == 330
-#     order3 = 'AAAAAAAAA'
-#     assert checkout(order3) == 380
-#     order4 = 'AAAA'
-#     assert checkout(order4) == 180
-#     order5 = 'EEB'
-#     assert checkout(order5) == 80
-#     order6 = 'EEEEBB'
-#     assert checkout(order6) == 160
-#     order7 = 'BEBEEE'
-#     assert checkout(order7) == 160
-#     order7 = 'BEBEEEFFF'
-#     assert checkout(order7) == 180
-#     order8 = 'FFFFFF'
-#     assert checkout(order8) == 40
-#     order9 = 'FF'
-#     assert checkout(order9) == 20
-#     complicated_order = 'AAABBBBBCCCCDDDEEFFFGGHHHHHIIJJJNNNMUUU'
-#     assert checkout(complicated_order) == 1020
+if __name__ == '__main__':
+    order1 = 'AAAAA'
+    assert checkout(order1) == 200
+    order2 = 'AAAAAAAA'
+    assert checkout(order2) == 330
+    order3 = 'AAAAAAAAA'
+    assert checkout(order3) == 380
+    order4 = 'AAAA'
+    assert checkout(order4) == 180
+    order5 = 'EEB'
+    assert checkout(order5) == 80
+    order6 = 'EEEEBB'
+    assert checkout(order6) == 160
+    order7 = 'BEBEEE'
+    assert checkout(order7) == 160
+    order7 = 'BEBEEEFFF'
+    assert checkout(order7) == 180
+    order8 = 'FFFFFF'
+    assert checkout(order8) == 40
+    order9 = 'FF'
+    assert checkout(order9) == 20
+    complicated_order = 'AAABBBBBCCCCDDDEEFFFGGHHHHHIIJJJNNNMUUU'
+    assert checkout(complicated_order) == 1020
+    bundle_order1 = 'STXYZ'
+    assert checkout(bundle_order1) == 82
+
 
 
