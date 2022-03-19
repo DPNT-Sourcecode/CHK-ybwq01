@@ -115,5 +115,3 @@ def checkout(skus):
 #     assert checkout(complicated_order) == 1020
 
 
-
-
