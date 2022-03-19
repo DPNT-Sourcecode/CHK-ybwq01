@@ -67,6 +67,8 @@ def checkout(skus):
     for sku in skus_order:
         if sku not in PRICES:
             return -1
+        if sku_counter[sku] == 0:
+            continue
         for bundle in BUNDLE_OFFERS.keys():
             if sku in bundle:
                 bundle_qty = BUNDLE_OFFERS[bundle][0]
@@ -85,7 +87,6 @@ def checkout(skus):
                     total += BUNDLE_OFFERS[bundle][1]
                     for sub_sku in bundled_skus:
                         sku_counter[sub_sku] -= 1
-
         if sku in GET_FREE.keys():
             offers = sorted(GET_FREE[sku].keys(), reverse=True)
             remaining = sku_counter[sku]
@@ -139,6 +140,7 @@ if __name__ == '__main__':
     bundle_order1 = 'STXYZ'
     print(checkout(bundle_order1))
     assert checkout(bundle_order1) == 82
+
 
 
 
