@@ -33,8 +33,13 @@ def checkout(skus):
                     total += OFFERS[sku][offer]
                     count_sku -= offer
         if sku in CROSS_OFFERS:
-            if sku_counter[sku]>=CROSS_OFFERS[sku]:
-                
+            offers = sorted(CROSS_OFFERS[sku].keys(), reverse=True)
+            for offer in offers:
+                if sku_counter[sku] >= offer:
+                    related_items = CROSS_OFFERS[sku].keys()
+                    for item in related_items:
+                        if item in sku_counter:
+                            total -= CROSS_OFFERS[sku][item] * PRICES[item]
 
         total += count_sku * PRICES[sku]
 
