@@ -50,9 +50,8 @@ GET_FREE = {
     'U': {3: 1}
 }
 
-BUNDLES = {'bundle1': ('S', 'T', 'X', 'Y', 'Z')}
 BUNDLE_OFFERS = {
-    'S': (3, 45)
+    ('S', 'T', 'X', 'Y', 'Z'): (3, 45)
 }
 
 # noinspection PyUnusedLocal
@@ -68,6 +67,11 @@ def checkout(skus):
     for sku in skus_order:
         if sku not in PRICES:
             return -1
+        for bundle in BUNDLE_OFFERS.keys():
+            if sku in bundle:
+                sub_counter = {sku: sku_counter[sku] for sku in sku_counter.keys() if sku in bundle}
+                print(sub_counter)
+
         if sku in GET_FREE.keys():
             offers = sorted(GET_FREE[sku].keys(), reverse=True)
             remaining = sku_counter[sku]
@@ -96,30 +100,31 @@ def checkout(skus):
     return total
 
 if __name__ == '__main__':
-    order1 = 'AAAAA'
-    assert checkout(order1) == 200
-    order2 = 'AAAAAAAA'
-    assert checkout(order2) == 330
-    order3 = 'AAAAAAAAA'
-    assert checkout(order3) == 380
-    order4 = 'AAAA'
-    assert checkout(order4) == 180
-    order5 = 'EEB'
-    assert checkout(order5) == 80
-    order6 = 'EEEEBB'
-    assert checkout(order6) == 160
-    order7 = 'BEBEEE'
-    assert checkout(order7) == 160
-    order7 = 'BEBEEEFFF'
-    assert checkout(order7) == 180
-    order8 = 'FFFFFF'
-    assert checkout(order8) == 40
-    order9 = 'FF'
-    assert checkout(order9) == 20
-    complicated_order = 'AAABBBBBCCCCDDDEEFFFGGHHHHHIIJJJNNNMUUU'
-    assert checkout(complicated_order) == 1020
+    # order1 = 'AAAAA'
+    # assert checkout(order1) == 200
+    # order2 = 'AAAAAAAA'
+    # assert checkout(order2) == 330
+    # order3 = 'AAAAAAAAA'
+    # assert checkout(order3) == 380
+    # order4 = 'AAAA'
+    # assert checkout(order4) == 180
+    # order5 = 'EEB'
+    # assert checkout(order5) == 80
+    # order6 = 'EEEEBB'
+    # assert checkout(order6) == 160
+    # order7 = 'BEBEEE'
+    # assert checkout(order7) == 160
+    # order7 = 'BEBEEEFFF'
+    # assert checkout(order7) == 180
+    # order8 = 'FFFFFF'
+    # assert checkout(order8) == 40
+    # order9 = 'FF'
+    # assert checkout(order9) == 20
+    # complicated_order = 'AAABBBBBCCCCDDDEEFFFGGHHHHHIIJJJNNNMUUU'
+    # assert checkout(complicated_order) == 1020
     bundle_order1 = 'STXYZ'
     assert checkout(bundle_order1) == 82
+
 
 
 
