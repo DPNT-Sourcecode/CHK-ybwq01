@@ -69,12 +69,21 @@ def checkout(skus):
             return -1
         for bundle in BUNDLE_OFFERS.keys():
             if sku in bundle:
+                bundle_qty = BUNDLE_OFFERS[bundle][0]
                 sub_counter = {sku: sku_counter[sku] for sku in sku_counter.keys() if sku in bundle}
-                if len(sub_counter) < BUNDLE_OFFERS[bundle][0]:
+                if len(sub_counter) < bundle_qty:
                     continue
                 else:
-                    individual_prices = {sku: PRICES[sku] for sku in sub_counter.keys()}
-                    print(individual_prices)
+                    individual_prices = list({sku: PRICES[sku] for sku in sub_counter.keys()}.values())
+                    most_expensive = sorted(individual_prices, reverse=True)[:bundle_qty]
+                    bundled_skus = []
+                    for price in most_expensive:
+                        for sub_sku in sub_counter.keys():
+                            if PRICES[sub_sku] == price:
+                                bundled_skus.append(sub_sku)
+                                break
+
+                    print(bundled_skus)
 
         if sku in GET_FREE.keys():
             offers = sorted(GET_FREE[sku].keys(), reverse=True)
@@ -128,6 +137,7 @@ if __name__ == '__main__':
     # assert checkout(complicated_order) == 1020
     bundle_order1 = 'STXYZ'
     assert checkout(bundle_order1) == 82
+
 
 
 
